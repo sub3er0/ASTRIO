@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <A_UNIQUE_SECTION_ID>
+            <A_UNIQUE_GROUP_ID>
+                <select_id>1</select_id>
+                <text_id>Hello!</text_id>
+            </A_UNIQUE_GROUP_ID>
+        </A_UNIQUE_SECTION_ID>
+    </default>
+</config>

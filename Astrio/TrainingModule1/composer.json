@@ -1,0 +1,14 @@
+{
+    "name": "Astrio/TrainingModule1",
+    "description": "N/A",
+    "authors": "",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Astrio\\TrainingModule1\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

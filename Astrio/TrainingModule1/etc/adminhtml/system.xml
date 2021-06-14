@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Training_Settings" translate="label" sortOrder="10">
+            <label>Training Settings</label>
+        </tab>
+
+        <section id="A_UNIQUE_SECTION_ID" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10" translate="label">
+            <label>A meaningful section label</label>
+            <tab>Training_Settings</tab>
+            <resource>Astrio_TrainingModule1::system_config</resource>
+
+            <group id="A_UNIQUE_GROUP_ID" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>A meaningful group label</label>
+
+                <field id="select_id" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" type="select">
+                    <label>Feature Flag Example</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="text_id" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Display Text</label>
+                    <comment>This text will display on the frontend.</comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>
