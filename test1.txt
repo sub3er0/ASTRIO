@@ -1,0 +1,4 @@
+1. минимальный код для работы модуля это файл registration.php и файл <module root>/etc/module.xml 
+2. с ошибкой в module.xml кэш не чистится, выдает ошибку There are no commands defined in the "cache" namespace.
+3. Выдает ошибку Cannot disable Astrio_TrainingModule1 because modules depend on it:
+Astrio_TrainingModule2:
