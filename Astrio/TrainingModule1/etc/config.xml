@@ -4,7 +4,7 @@
         <a_unique_section_id>
             <a_unique_group_id>
                 <select_id>1</select_id>
-                <text_id>Hello!</text_id>
+                <text_id>0</text_id>
             </a_unique_group_id>
         </a_unique_section_id>
     </default>
