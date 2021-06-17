@@ -14,9 +14,10 @@ class Task2Plugin
 
     public function afterGetPrice(\Magento\Catalog\Model\Product $subject, $result)
     {
-        $text = $this->helper->getValue();
+        $value= $this->helper->getValue();
         $isEnabled = $this->helper->isEnabled();
-        $result = 999;
+        if ($isEnabled)
+            $result += $value;
         return $result;
     }
 }
