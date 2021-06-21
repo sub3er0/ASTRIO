@@ -17,7 +17,8 @@ class Index extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        echo "Hello from Index";
+
+        echo "Hello from Index, is_rewrite: " . $this->_request->getParam('is_rewrite');
         exit;
     }
 

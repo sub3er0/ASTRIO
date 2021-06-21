@@ -2,7 +2,7 @@
 
 namespace Astrio\Catalog\Controller\Product;
 
-class Index extends \Magento\Framework\App\Action\Action
+class View extends \Magento\Framework\App\Action\Action
 
 {
     protected $_pageFactory;
