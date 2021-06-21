@@ -16,13 +16,12 @@ class CustomRouter implements \Magento\Framework\App\RouterInterface
     public function match(\Magento\Framework\App\RequestInterface $request)
     {
         $identifier = trim($request->getPathInfo(), '/');
-
         if (strpos($identifier, 'lesson.html') !== false) {
             $request->setModuleName('trainingmodule1');
             $request->setControllerName('mycontroller');
             $request->setActionName('index');
-            //return $this->actionFactory->create('Magento\Framework\App\Action\Forward', ['request' => $request]);
-            return $this->actionFactory->create(Forward::class, ['request' => $request]);
+            return $this->actionFactory->create('Magento\Framework\App\Action\Forward', ['request' => $request]);
+            //return $this->actionFactory->create(Forward::class, ['request' => $request]);
         }
         return null;
     }
