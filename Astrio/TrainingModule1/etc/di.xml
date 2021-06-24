@@ -4,4 +4,5 @@
         <plugin name="task2PluginName" type="Astrio\TrainingModule1\Plugin\Task2Plugin" sortOrder="1" disabled="false" />
     </type>
     <preference for="Magento\Catalog\Model\Product" type="Astrio\TrainingModule1\Rewrite\MyProduct" />
+    <preference for="Magento\Catalog\Block\Product\View\Description" type="Astrio\TrainingModule1\Block\Catalog\Product\Description" />
 </config>

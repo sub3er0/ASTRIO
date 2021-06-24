@@ -1,7 +1,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
         <route id="catalog">
-            <module name="Astrio_Catalog" before="Magento_Catalog" />
+            <module name="Magento_Catalog"/>
         </route>
     </router>
 </config>
+    <!--     <module name="Astrio_Catalog" before="Magento_Catalog"/>  -->
+    <!--     <module name="Astrio_Catalog"/>  -->

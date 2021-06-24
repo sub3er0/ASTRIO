@@ -1,0 +1,2 @@
+4. Определите полный путь к шаблону, который использует блок \Magento\Catalog\Block\Product\View\Attributes на странице просмотра товара
+Ответ: vendor/magento/module-catalog/view/frontend/templates/product/view/attributes.phtml

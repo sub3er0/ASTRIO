@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="product.info.overview" template="Astrio_TrainingModule1::template6.phtml"/>
+    <referenceBlock name="display_something">
+        <arguments>
+            <argument name="background_color" xsi:type="string">orange</argument>
+        </arguments>
+    </referenceBlock>
+</page>
+
