@@ -9,4 +9,12 @@
         </arguments>
     </referenceBlock>
 
+    <referenceBlock name="catalog.topnav">
+        <block class="Magento\Framework\View\Element\Html\Link\Current" name="something-link">
+            <arguments>
+                <argument name="label" xsi:type="string">Test page</argument>
+                <argument name="path" xsi:type="string">Trainingmodule1/mycontroller/test</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
 </page>
