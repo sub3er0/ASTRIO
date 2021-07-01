@@ -16,13 +16,15 @@
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Имя')) ?></span></label>
             <div class="control">
-                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Имя')) ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Имя')) ?>" value="<?= $block->escapeHtmlAttr($this->helper(\Astrio\TrainingQuestion\Helper\Data::class)->getPostValue('name') )?>" class="input-text" type="text" data-validate="{required:true}"/>
             </div>
         </div>
         <div class="field question required">
             <label class="label" for="question"><span><?= $block->escapeHtml(__('Введите вопрос')) ?></span></label>
             <div class="control">
-                <textarea name="content" id="content" title="<?= $block->escapeHtmlAttr(__('Введите вопрос')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                <textarea name="content" id="content" title="<?= $block->escapeHtmlAttr(__('Введите вопрос')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}">
+                    <?= $block->escapeHtml($this->helper(\Astrio\TrainingQuestion\Helper\Data::class)->getPostValue('content')) ?>
+                </textarea>
             </div>
         </div>
     </fieldset>

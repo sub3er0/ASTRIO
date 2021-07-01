@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Astrio\TrainingQuestion\Block\IndexForm $block */
+?>
+
+<table>
+    <tr>
+        <th class="name">Имя</th>
+        <th class="content">Вопрос</th>
+    </tr>
+
+    <?php
+    foreach ($block->getSortedQuestionsCollection() as $key => $question){
+        echo '<tr>
+                    <td>'.$question['name'].'</td>
+                    <td>'.$question['content'].'</td>
+              </tr>';
+    }
+    ?>
+</table>
+
+<form class="form question"
+    action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+    id="question-form"
+    method="post"
+    data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+    data-mage-init='{"validation":{}}'>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Добавить вопрос')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

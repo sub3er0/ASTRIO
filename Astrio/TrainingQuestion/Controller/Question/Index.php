@@ -9,34 +9,19 @@ use Astrio\TrainingQuestion\Model\QuestionFactory;
 
 class Index extends Action
 {
-    /**
-     * @var \Astrio\TrainingQuestion\Model\QuestionFactory
-     */
-    protected $_modelQuestionFactory;
+    protected $_pageFactory;
 
-    /**
-     * @param Context $context
-     * @param QuestionFactory $modelQuestionFactory
-     */
     public function __construct(
-        Context $context,
-        QuestionFactory $modelQuestionFactory
-    ) {
-        parent::__construct($context);
-        $this->_modelQuestionFactory = $modelQuestionFactory;
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $pageFactory)
+    {
+        $this->_pageFactory = $pageFactory;
+        return parent::__construct($context);
     }
 
     public function execute()
     {
-        $questionModel = $this->_modelQuestionFactory->create();
-
-        // Load the item with ID is 1
-        $item = $questionModel->load(1);
-        var_dump($item->getData());
-
-        // Get sample collection
-        $questionCollection = $questionModel->getCollection();
-        // Load all data of collection
-        var_dump($questionCollection->getData());
+        return $this->_pageFactory->create();
     }
+
 }

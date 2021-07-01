@@ -30,9 +30,9 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
 
     private $questionFactory;
 
-    private $_storeManager;
+    private $storeManager;
 
-    private $_date;
+    private $date;
 
     private $dataPersistor;
 
@@ -42,12 +42,16 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
     public function __construct(
         Context $context,
         QuestionFactory $_questionFactory,
-        DataPersistorInterface $dataPersistor
+        DataPersistorInterface $dataPersistor,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Stdlib\DateTime\DateTime $date
     ) {
         parent::__construct($context);
         $this->context = $context;
         $this->questionFactory = $_questionFactory;
         $this->dataPersistor = $dataPersistor;
+        $this->storeManager = $storeManager;
+        $this->date = $date;
     }
 
     /**
@@ -66,10 +70,15 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
             $this->messageManager->addSuccessMessage(
                 __('Thanks for contacting us with your comments and questions. We\'ll respond to you very soon.')
             );
-            //$this->dataPersistor->clear('contact_us');
+            $this->dataPersistor->clear('contact_us');
+        } catch (LocalizedException $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->dataPersistor->set('contact_us', $this->getRequest()->getParams());
         } catch (\Exception $e) {
-
-            //$this->dataPersistor->set('contact_us', $this->getRequest()->getParams());
+            $this->dataPersistor->set('contact_us', $this->getRequest()->getParams());
+            $this->messageManager->addErrorMessage(
+                __('An error occurred while processing your form. Please try again later.')
+            );
         }
         return $this->resultRedirectFactory->create()->setPath('trainingquestion/question/form');
     }
@@ -84,10 +93,8 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
         $data = (array)$this->getRequest()->getPost();
         $_data['name'] = $data['name'];
         $_data['content'] = $data['content'];
-        $storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Store\Model\StoreManagerInterface');
-        $_data['store_id'] = $storeManager->getStore()->getId();
-        $date = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Stdlib\DateTime\DateTime');
-        $_data['creation_time '] = $date->gmtDate();
+        $_data['store_id'] = $this->storeManager->getStore()->getId();
+        $_data['creation_time '] = $this->date->gmtDate();
         $model->setData($_data);
         $model->save();
     }
@@ -102,7 +109,7 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
         if (trim($request->getParam('name')) === '') {
             throw new LocalizedException(__('Enter the Name and try again.'));
         }
-        if (trim($request->getParam('question')) === '') {
+        if (trim($request->getParam('content')) === '') {
             throw new LocalizedException(__('Enter the question and try again.'));
         }
         if (trim($request->getParam('hideit')) !== '') {
