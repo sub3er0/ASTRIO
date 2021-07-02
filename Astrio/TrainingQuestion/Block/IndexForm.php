@@ -3,12 +3,16 @@ namespace Astrio\TrainingQuestion\Block;
 class IndexForm extends \Magento\Framework\View\Element\Template
 {
     protected $questionFactory;
+    protected $questionCollectionFactory;
+
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \Astrio\TrainingQuestion\Model\QuestionFactory $questionFactory
+        \Astrio\TrainingQuestion\Model\QuestionFactory $questionFactory,
+        \Astrio\TrainingQuestion\Model\ResourceModel\Question\CollectionFactory $questionCollectionFactory
     )
     {
         $this->questionFactory = $questionFactory;
+        $this->questionCollectionFactory = $questionCollectionFactory;
         parent::__construct($context);
     }
 
@@ -22,16 +26,14 @@ class IndexForm extends \Magento\Framework\View\Element\Template
         return $post->getCollection();
     }
 
-    public function getSortedQuestionsCollection(){
-        $question = $this->questionFactory->create();
-        $questionsCollection =  $question->getCollection()->getData();
+    public function getFiltredQuestionsCollection(){
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+        $storeId = $storeManager->getStore()->getId();
 
-        usort($questionsCollection, function($a, $b)
-        {
-            if ($a["store_id"] == $b["store_id"])
-                return (0);
-            return (($a["store_id"] < $b["store_id"]) ? -1 : 1);
-        });
-        return $questionsCollection;
+        $questionsCollection = $this->questionCollectionFactory->create();
+        $questionsCollection->addFieldToFilter('store_id', $storeId);
+
+        return $questionsCollection->getItems();
     }
 }

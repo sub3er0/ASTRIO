@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Astrio\TrainingQuestion\Block\IndexForm" name="questionForm" template="Astrio_TrainingQuestion::indexForm.phtml">
+            <block class="Astrio\TrainingQuestion\Block\IndexForm" name="questionForm" template="Astrio_TrainingQuestion::indexForm.phtml" cacheable="false">
 
             </block>
         </referenceContainer>

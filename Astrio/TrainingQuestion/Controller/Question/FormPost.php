@@ -9,16 +9,11 @@ namespace Astrio\TrainingQuestion\Controller\Question;
 
 use Astrio\TrainingQuestion\Model\QuestionFactory;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
-use Magento\Contact\Model\ConfigInterface;
-use Magento\Contact\Model\MailInterface;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Psr\Log\LoggerInterface;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\DataObject;
-use Magento\Framework\Stdlib\DateTime;
+
 
 class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostActionInterface
 {
@@ -36,12 +31,15 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
 
     private $dataPersistor;
 
+    private $questionResourse;
+
     /**
      * @param Context $context
      */
     public function __construct(
         Context $context,
         QuestionFactory $_questionFactory,
+        \Astrio\TrainingQuestion\Model\ResourceModel\Question $questionResourse,
         DataPersistorInterface $dataPersistor,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Stdlib\DateTime\DateTime $date
@@ -52,6 +50,7 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
         $this->dataPersistor = $dataPersistor;
         $this->storeManager = $storeManager;
         $this->date = $date;
+        $this->questionResourse = $questionResourse;
     }
 
     /**
@@ -96,7 +95,7 @@ class FormPost extends \Magento\Framework\App\Action\Action implements HttpPostA
         $_data['store_id'] = $this->storeManager->getStore()->getId();
         $_data['creation_time '] = $this->date->gmtDate();
         $model->setData($_data);
-        $model->save();
+        $this->questionResourse->save($model);
     }
 
     /**
