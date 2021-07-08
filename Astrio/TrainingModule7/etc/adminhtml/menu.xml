@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Astrio_TrainingModule7::testmenu" title="Test menu" module="Astrio_TrainingModule7" sortOrder="51" resource="Astrio_TrainingModule7::testmenu"/>
+        <add id="Astrio_TrainingModule7::listing" title="Listing test7_table" module="Astrio_TrainingModule7" sortOrder="10" action="trainingmodule7/test/index" resource="Astrio_TrainingModule7::listing" parent="Astrio_TrainingModule7::testmenu"/>
+    </menu>
+</config>
