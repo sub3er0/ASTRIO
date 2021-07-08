@@ -50,6 +50,20 @@ class DataPatch5 implements DataPatchInterface
             'used_in_product_listing' => true,
             'unique' => false,
         ]);
+
+        $eavSetup->updateAttribute(
+            \Magento\Catalog\Model\Product::ENTITY,
+            'test_attribute5', // attribute code to update
+            'attribute_set', // attribute field to update
+            'Default' // value to update
+        );
+
+        $eavSetup->updateAttribute(
+            \Magento\Catalog\Model\Product::ENTITY,
+            'test_attribute5', // attribute code to update
+            'group', // attribute field to update
+            'Product Details' // value to update
+        );
     }
 
     /**
